@@ -3,7 +3,10 @@
 # which Snaptrap needs for the iPhone Duo hinge APIs.
 set -euo pipefail
 
-xcode=$(ls -d /Applications/Xcode_27*.app 2>/dev/null | sort -V | tail -1 || true)
+# Prefer a final release; fall back to a release candidate or beta only if that's all there is.
+all=$(ls -d /Applications/Xcode_27*.app 2>/dev/null | sort -V || true)
+xcode=$(printf '%s\n' "$all" | grep -viE 'beta|release_candidate|_rc' | grep . | tail -1 || true)
+[ -z "$xcode" ] && xcode=$(printf '%s\n' "$all" | grep . | tail -1 || true)
 if [ -z "$xcode" ] && [ -d /Applications/Xcode.app ]; then xcode=/Applications/Xcode.app; fi
 if [ -z "$xcode" ]; then
   echo "::error::No Xcode 27 found on this runner."
