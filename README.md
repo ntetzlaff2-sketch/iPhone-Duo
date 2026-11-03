@@ -47,6 +47,7 @@ Snaptrap/
     Game/     GameModel, Bug, TrapLayout (trap space + fold geometry), Stage
     Views/    TrapView, TrapRenderer (Canvas), TrapHUD, CoverView + PodRenderer, VirtualHingePanel, Theme
 web-preview/  The same renderer ported to a <canvas>, to try the animations in a browser
+ci/           ExportOptions.plist and the Xcode selector used by .github/workflows/testflight.yml
 ```
 
 ## Requirements
@@ -54,7 +55,9 @@ web-preview/  The same renderer ported to a <canvas>, to try the animations in a
 - Xcode 27.1+, the iOS 27.1 SDK, Swift 6
 - The iPhone Duo simulator or an iPhone Duo. On any other iPhone it falls back to the virtual hinge.
 
-Open `Snaptrap/Snaptrap.xcodeproj`, pick the iPhone Duo simulator, and run. Use the simulator's posture controls to fold the device.
+**On your iPhone Duo via TestFlight (no Mac needed):** GitHub Actions compiles every push, and the **Build & TestFlight** workflow archives, signs and uploads a build to TestFlight. One-time setup is in [TESTFLIGHT.md](TESTFLIGHT.md).
+
+**With a Mac:** open `Snaptrap/Snaptrap.xcodeproj`, pick the iPhone Duo simulator, and run. Use the simulator's posture controls to fold the device.
 
 ## Web preview
 
